@@ -13,7 +13,7 @@ class newscontroller extends Controller
     {
     $this->middleware('auth');
     }
-        
+        // функция для добавления новости факультета
     public function addnews(Request $request) {
         $file = $request->file('files');
         $text = $request->input('text');
@@ -36,7 +36,7 @@ class newscontroller extends Controller
         }
         return back();
     }
-
+    // функция для добавления новости кафедры
     public function addnewsdepartment(Request $request) {
         
         $file = $request->file('files');

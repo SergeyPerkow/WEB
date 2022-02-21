@@ -16,44 +16,27 @@ class questcontroller extends Controller
     {
     $this->middleware('auth');
     }
-    
-    public function ShowQuest($id){
+    //показывает задания, также передаем данные для показа отправленых(from) и принятых заданий(from2), новостей и статус задания
+    public function ShowQuest($id, Request $req){
         $user = New User;
+        $b = $req->input('quest_status');
         $Questfrom = New quest;
-        $Questfrom2 = New quest;
         $idfaculty = Auth::user()->faculty;
         $iddepartment = Auth::user()->department;
         $news = New news;
-        return view('Quest', ['name' => $id, 
+        return view('Quest', 
+        ['name' => $id, 
+        'quest_status' =>$b,
         'from' =>  $Questfrom->where('id_to', '=', $id)
-        ->where('id_11', '<>', '1')->
-        where('id_from', '=', auth()->id())->get(),
-        'from2' =>  $Questfrom2->where('id_to', '=', auth()->id())
-        ->where('id_11', '<>', '1')->
-        where('id_from', '=', $id)->get(),'news' => $news->where('id_for', '=', $idfaculty)->get(),
+            ->where('id_11', '=', $b)->
+                where('id_from', '=', auth()->id())->get(),
+        'from2' =>  $Questfrom->where('id_to', '=', auth()->id())
+            ->where('id_11', '=', $b)->where('id_from', '=', $id)->get(),
+        'news' => $news->where('id_for', '=', $idfaculty)->get(),
         'news2' => $news->where('id_for_department', '=', $iddepartment)->get()]);
+        
     }
-
-    public function ShowQuest2($id){
-        $user = New User;
-        $Questfrom = New quest;
-        $Questfrom2 = New quest;
-        $idfaculty = Auth::user()->faculty;
-        $iddepartment = Auth::user()->department;
-        $news = New news;
-        return view('QuestComplete', ['name' => $id, 
-        'from' =>  $Questfrom->where('id_to', '=', $id)->where('id_11', '=', '1')->
-        where('id_from', '=', auth()->id())->get(),
-        'from2' =>  $Questfrom2->where('id_to', '=', auth()->id())->where('id_11', '=', '1')->
-        where('id_from', '=', $id)->get(), 'news' => $news->where('id_for', '=', $idfaculty)->get(),
-        'news2' => $news->where('id_for_department', '=', $iddepartment)->get()]);
-    }
-
-
-    public function Show($id){
-        return 'ok';
-    }
-
+    
     public function addquest(Request $request) {
         
         

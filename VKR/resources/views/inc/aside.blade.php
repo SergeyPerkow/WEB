@@ -1,7 +1,7 @@
 @section('aside')
 <div class="col-sm-4">
 <div class="card-header mt-3">
-                            @if (Auth()->user()->DOLZ == 'Декан')               
+                            @if (Auth()->user()->role == 'Декан')               
                             @CSRF       
                             <div class="card-header mt-3 mb-3">Новости факультета</div>
                                     @foreach($news as $el)
@@ -42,7 +42,7 @@
                             </div>
                             </form>
 
-                                @elseif (Auth()->user()->DOLZ == 'Заведующий кафедрой')               
+                                @elseif (Auth()->user()->role == 'Заведующий кафедрой')               
                 @CSRF       
                 <div class="card-header mt-3 mb-3">Новости факультета</div>
                                     @foreach($news as $el)                                    

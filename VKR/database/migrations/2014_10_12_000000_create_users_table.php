@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
             $table->string('FIO')->nullable();
-            $table->string('DOLZ')->nullable();
+            $table->string('role')->nullable();
             $table->string('faculty')->nullable();
             $table->string('department')->nullable();;
             $table->string('id1')->default('1');

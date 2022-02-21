@@ -43,12 +43,9 @@ Route::post('selectdepartment', 'App\Http\Controllers\facultyController@selectde
 
 Route::get('/workwithuser/quest/{id}', 'App\Http\Controllers\questcontroller@ShowQuest')
 ->name('ShowQuest');
-Route::get('/workwithuser/quest/complete/{id}', 'App\Http\Controllers\questcontroller@ShowQuest2')
-->name('ShowQuest2');
+
 Route::get('/workwithuser/quest/{id_to}/{id}', 'App\Http\Controllers\usercontroller@ShowOnUser')
 ->name('MessagesForQuest');
-Route::get('/workwithuser/quest/Complete/{id_to}/{id}', 'App\Http\Controllers\usercontroller@ShowOnUserComplete')
-->name('MessagesForQuestComplete');
 Route::post('/222', 'App\Http\Controllers\questcontroller@addquest')->name('addquest');
 
 

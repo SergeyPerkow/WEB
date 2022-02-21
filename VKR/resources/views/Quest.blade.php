@@ -28,11 +28,13 @@
                                 Сообщения
                                 </button>
                                 </a>
-                                <a href=" {{ route('delquest', $el->id) }} "> 
-                                <button class="btn btn-warning">
-                                Отметить как выполненное 
-                                </button>
-                                </a>
+                                    @if ($quest_status == 0)
+                                        <a href=" {{ route('delquest', $el->id) }} "> 
+                                        <button class="btn btn-warning">
+                                        Отметить как выполненное 
+                                        </button>
+                                        </a>
+                                    @endif
                                 </div>
                             @endforeach
 
@@ -47,7 +49,7 @@
                                     </a>
                                     </div>
                                 @endforeach
-
+                    @if ($quest_status == 0)
                         <div class="card-header">Ответить</div>
                             <div class="card-body">
                                 <form action="{{ route('addquest')}}" method="post" enctype="multipart/form-data">
@@ -61,6 +63,7 @@
                                     </div>
                                 </form>       
                             </div>
+                    @endif
                         </div>
                     </div>
                 </div>

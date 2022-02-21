@@ -23,8 +23,8 @@
         </div>
 
         <div class="form-group">
-        <label for="DOLZ">Выберите вашу должность</label>
-        <select class="form-control" name="DOLZ" id="DOLZ" required="">
+        <label for="role">Выберите вашу должность</label>
+        <select class="form-control" name="role" id="role" required="">
         <option value="">Выберите вашу должность</option>
         <option>Декан</option>
         <option>Заведующий кафедрой</option>

@@ -11,17 +11,19 @@ use DB;
 
 class aboutusercontroller extends Controller
 {
+    //функция для записи данных об учебном подразделении пользователя в ВУЗе
     public function submit(Request $req)
     {
 
-        $socket = $req->input('faculties');
-        $socket2 = $req->input('department');
-        $socket3 = $req->input('DOLZ');
-        $socket4 = $req->input('FIO');
-        DB::table('users')->where('id', auth()->id())->update(['faculty' => $socket,
-        'department' => $socket2, 'DOLZ' => $socket3,'FIO' => $socket4,'id1' => 2]);
+        DB::table('users')->where('id', auth()->id())->update([
+        'faculty' => $req->input('faculties'),
+        'department' => $req->input('department'), 
+        'role' => $req->input('role'),
+        'FIO' => $req->input('FIO'),
+        'id1' => 2]);
         return redirect()->route('dashboard');
     }
+    //функция для подверждения правильности данных администратором
     public function ConfirmData($id){
         DB::table('users')->where('id', $id)->update(['id1' => 3]);
         return back();

@@ -17,7 +17,7 @@
             <h3>{{ $el->FIO }}</h3>
             <h3>{{ $el->name }}</h3>
             <h3>{{ $el->email }}</h3>
-            <p>{{ $el->DOLZ }}</p>
+            <p>{{ $el->role }}</p>
             <p>{{ $el->name_f }}</p>
             <p>{{ $el->name_d }}</p>
             <a href=" {{ route('ConfirmData', $el->id) }} "> 

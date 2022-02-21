@@ -15,13 +15,13 @@ class FilesController extends Controller
     {
     $this->middleware('auth');
     }
-    
+    // функция для отправки сообщения, которая также проверяет наличие прикрепленного файла
     public function UpLoad(Request $request) {
         $user = new User;
         $file = $request->file('files');
         $touser = $request->input('idtouser');
-       $toquest = $request->input('idtoquest');
-       $text = $request->input('text');
+        $toquest = $request->input('idtoquest');
+        $text = $request->input('text');
         if ($file > 0){
             $file->store('files');
             $path = $request->file('files')->store('files');
@@ -45,7 +45,7 @@ class FilesController extends Controller
             return back();
         }
     }
-    
+    //функция для загрузки файлов с сервера
     public function Download(Request $request) {
         $messagefrom = New FileManager;
         $text = $request->input('href');;

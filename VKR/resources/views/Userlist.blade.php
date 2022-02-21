@@ -15,25 +15,31 @@
             
 <div class="row">
 <div class="col-sm-8">
-
+   
 <div class="card-header mt-3 ml-2 mb-3">Пользователи</div>
             
          @foreach($data as $el)
             <div class="alert ml-3 alert-dark" role="alert">
             <h3>{{ $el->FIO }}</h3>
-            <p>{{ $el->DOLZ }}</p>
+            <p>{{ $el->role }}</p>
             <p>{{ $el->name_f }}</p>
             <p>{{ $el->name_d }}</p>
-            <a href=" {{ route('ShowQuest', $el->id) }} "> 
-            <button class="btn btn-warning">
+            
+            <form action="{{ route('ShowQuest', $el->id) }}" method="get" enctype="multipart/form-data">        
+            <button class="btn btn-warning" style='float: left'>
+            <input type="int" hidden value='0' class="form-control" id="quest_status" name="quest_status" required="">
             Невыполненные задания
             </button>
-            </a>
-            <a href=" {{ route('ShowQuest2', $el->id) }} "> 
-            <button class="btn btn-warning">
+            </form>
+            
+            
+            <form action="{{ route('ShowQuest', $el->id) }}" method="get" enctype="multipart/form-data">                       
+            <button class="btn btn-warning ml-2" >
+            <input type="int" hidden value='1' class="form-control" id="quest_status" name="quest_status" required=""> 
             Выполненные задания
             </button>
-            </a>
+            </form>
+            
             </div>
         @endforeach
 

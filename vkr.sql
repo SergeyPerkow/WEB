@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Фев 04 2022 г., 14:08
+-- Время создания: Фев 21 2022 г., 16:18
 -- Версия сервера: 10.3.22-MariaDB
 -- Версия PHP: 7.1.33
 
@@ -109,7 +109,11 @@ CREATE TABLE `file_managers` (
 INSERT INTO `file_managers` (`id`, `text`, `href`, `id_from`, `id_to`, `id_1`, `created_at`, `updated_at`) VALUES
 (114, 'норм', '0', 26, 17, 67, '2022-02-03 23:12:24', '2022-02-03 23:12:24'),
 (117, 'Проверка', '0', 17, 18, 69, '2022-02-04 07:36:58', '2022-02-04 07:36:58'),
-(118, 'Успешно', '0', 18, 17, 69, '2022-02-04 07:38:32', '2022-02-04 07:38:32');
+(118, 'Успешно', '0', 18, 17, 69, '2022-02-04 07:38:32', '2022-02-04 07:38:32'),
+(119, NULL, '0', 17, NULL, NULL, '2022-02-21 10:04:55', '2022-02-21 10:04:55'),
+(120, NULL, '0', 17, NULL, NULL, '2022-02-21 10:04:57', '2022-02-21 10:04:57'),
+(121, 'Точно?', '0', 17, 18, 69, '2022-02-21 10:19:13', '2022-02-21 10:19:13'),
+(122, 'Все работает?', '0', 17, 18, 71, '2022-02-21 12:15:44', '2022-02-21 12:15:44');
 
 -- --------------------------------------------------------
 
@@ -235,8 +239,9 @@ CREATE TABLE `quests` (
 --
 
 INSERT INTO `quests` (`id`, `subject`, `id_from`, `id_to`, `id_11`, `created_at`, `updated_at`) VALUES
-(69, 'Тестовое задание', 17, 18, 0, '2022-02-04 07:36:18', '2022-02-04 07:36:18'),
-(70, 'тест', 17, 18, 1, '2022-02-04 07:36:33', '2022-02-04 07:36:33');
+(69, 'Тестовое задание', 17, 18, 1, '2022-02-04 07:36:18', '2022-02-04 07:36:18'),
+(70, 'тест', 17, 18, 1, '2022-02-04 07:36:33', '2022-02-04 07:36:33'),
+(71, 'Новое задание', 17, 18, 0, '2022-02-21 12:15:34', '2022-02-21 12:15:34');
 
 -- --------------------------------------------------------
 
@@ -258,10 +263,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('IU6qGOu66SxnQcA7ctlVACaIOIyU4aelKTVhMYQX', 26, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.76', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiTmExMDBuS0ZpeVRQdzl2a2ttMEFiNkJjUmhWT0lEcHJSOEtJa1VuOCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC93b3Jrd2l0aHVzZXIiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyNjtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJHdrUlVhOU01eFkuZFYxUm00YmNwa2U5SnJXUEhYZk1lVlZ6SWQzM293NlZDekhLMXJHWnFPIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCR3a1JVYTlNNXhZLmRWMVJtNGJjcGtlOUpyV1BIWGZNZVZWeklkMzNvdzZWQ3pISzFyR1pxTyI7fQ==', 1643930234),
-('oTmt9bGS8IH6EKXE6Vmf9bdqldIoiX7i4ZOC5Gel', 17, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.76', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiczJ0NU5mbW5VcXhQR2hKaW5iS0t6bWRZcGR6Q3RBUXd0a0lma21idCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM0OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvd29ya3dpdGh1c2VyIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTc7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRlSGZTamI3TkRQVXZ3VmppYW5vSEJlejlaTWlnbS9OS1VUQWs2OGp2UFlOM0d6WkwyOVh1QyI7czoyMToicGFzc3dvcmRfaGFzaF9zYW5jdHVtIjtzOjYwOiIkMnkkMTAkZUhmU2piN05EUFV2d1ZqaWFub0hCZXo5Wk1pZ20vTktVVEFrNjhqdlBZTjNHelpMMjlYdUMiO30=', 1643960225),
-('R8xJnaKAvnqNvW3ZWlVpdWLOpaiIbTT6v9CI6vaS', 18, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.76', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiOUZtZ2R6cld0dkp1YVcwVnFuNkU4a1ZkcTNNMWxiNDkyV3drS3pxZiI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM0OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvd29ya3dpdGh1c2VyIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTg7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCR0ZEt5R1hFZ2FEakRpVkZiMDZVQTZ1OWRhOWtEUm9CTkl4Sm5Eb1VQOVUwQklMY08vSkZBQyI7fQ==', 1643960315),
-('wAQU01VPOpedxCIYrCTJ3P7MEkUyDNiMFRjJ4ZQA', 19, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.76', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiWWlIWGdqdEZUa1JMSUdVQWNwR3psYXhkeU1IOEVRVzB2MFZCWjdTTiI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM0OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvd29ya3dpdGh1c2VyIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTk7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRmLjdqWXowU3g1N2dCdEd6QXlUNWFlUEZTTGkyeEQzSGRLWUtScGtob3Uwbzc4NmJPMzFKUyI7fQ==', 1643930237);
+('TE6l9m5JlasK2ht4Vt6yLb19SEHEAmuwXuwo5GII', 17, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36 Edg/98.0.1108.56', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiMkVzS3JWSHdSSkRYcUE2dkRXZFZnZ21BUFhXY2kzSDdpR1E0aktXeSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC93b3Jrd2l0aHVzZXIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxNztzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJGVIZlNqYjdORFBVdndWamlhbm9IQmV6OVpNaWdtL05LVVRBazY4anZQWU4zR3paTDI5WHVDIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRlSGZTamI3TkRQVXZ3VmppYW5vSEJlejlaTWlnbS9OS1VUQWs2OGp2UFlOM0d6WkwyOVh1QyI7fQ==', 1645449407);
 
 -- --------------------------------------------------------
 
@@ -360,7 +362,7 @@ CREATE TABLE `users` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `FIO` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `DOLZ` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
+  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
   `faculty` int(20) NOT NULL DEFAULT 1,
   `department` int(20) NOT NULL DEFAULT 1,
   `id1` int(20) NOT NULL DEFAULT 1
@@ -370,9 +372,9 @@ CREATE TABLE `users` (
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`, `FIO`, `DOLZ`, `faculty`, `department`, `id1`) VALUES
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`, `FIO`, `role`, `faculty`, `department`, `id1`) VALUES
 (1, 'Admin', 'Perch46@yandex.ru', NULL, '$2y$10$hbaWJ1ruHCnHFauoAqiOre2e2nY8qB1Rz30pd.Ys5MMBKsc/OcU8W', NULL, NULL, NULL, 1, NULL, '2021-11-12 10:40:43', '2021-11-12 10:40:43', 'Перьков Сергей Андреевич', 'Администратор', 0, 0, 3),
-(17, '22', '22@yandex.ru', NULL, '$2y$10$eHfSjb7NDPUvwVjianoHBez9ZMigm/NKUTAk68jvPYN3GzZL29XuC', NULL, NULL, NULL, 17, NULL, '2021-11-25 17:55:04', '2021-11-25 17:55:24', 'Андреев Андрей Андреевич', 'Заведующий кафедрой', 1, 2, 3),
+(17, '22', '22@yandex.ru', NULL, '$2y$10$eHfSjb7NDPUvwVjianoHBez9ZMigm/NKUTAk68jvPYN3GzZL29XuC', NULL, NULL, NULL, 17, NULL, '2021-11-25 17:55:04', '2021-11-25 17:55:24', 'Аркадий Аркадьевич', 'Заведующий кафедрой', 1, 2, 3),
 (18, 'DEkan', 'dekan@yandex.ru', NULL, '$2y$10$tdKyGXEgaDjDiVFb06UA6u9da9kDRoBNIxJnDoUP9U0BILcO/JFAC', NULL, NULL, NULL, 18, NULL, '2021-11-29 11:37:23', '2021-11-29 11:38:01', 'Петр Петрович Петров', 'Декан', 1, 2, 3),
 (19, '111', '1@yandex.ru', NULL, '$2y$10$f.7jYz0Sx57gBtGzAyT5aePFSLi2xD3HdKYKRpkhou0o786bO31JS', NULL, NULL, NULL, 19, NULL, '2021-11-29 14:00:59', '2021-11-29 14:01:37', 'Аркадий Аркадьевич', 'профессорско-преподавательский состав', 1, 2, 3),
 (20, 'Ivanov', 'Ivanov@yandex.ru', NULL, '$2y$10$vmUSyoo52DGHcWus99XyT.fsMmwcT70PZw7KfbbpuiPXN39dyWrUi', NULL, NULL, NULL, 20, NULL, '2021-12-02 11:10:22', '2021-12-02 11:29:38', 'Иванов Иван Иванович', 'профессорско-преподавательский состав', 1, 2, 3),
@@ -525,7 +527,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT для таблицы `file_managers`
 --
 ALTER TABLE `file_managers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT для таблицы `migrations`
@@ -537,7 +539,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT для таблицы `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT для таблицы `personal_access_tokens`
@@ -549,7 +551,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT для таблицы `quests`
 --
 ALTER TABLE `quests`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT для таблицы `teams`

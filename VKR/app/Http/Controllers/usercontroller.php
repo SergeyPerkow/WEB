@@ -25,8 +25,8 @@ $this->middleware('auth');
     {   
         $user = DB::table('users')->join('departments', 'users.department', '=', 'departments.id')
         ->join('faculties', 'users.faculty', '=', 'faculties.id')
-        ->select('name', 'users.id', 'FIO', 'email', 'DOLZ', 'faculty', 'department', 'id1', 'name_f', 'name_d');
-        $who1 = Auth::user()->DOLZ;
+        ->select('name', 'users.id','FIO', 'email', 'role', 'faculty', 'department', 'id1', 'name_f', 'name_d');
+        $who1 = Auth::user()->role;
         $who2 = Auth::user()->id1;
         $idfaculty = Auth::user()->faculty;
         $news = New news;
@@ -36,7 +36,7 @@ $this->middleware('auth');
 
             if ($who1 == "Декан") {
                 return view('Userlist', ['data' => $user->where('faculty', '=', Auth::user()->faculty)
-                ->where('DOLZ', '=', 'Заведующий кафедрой')
+                ->where('role', '=', 'Заведующий кафедрой')
                 ->where('id1', '>', 2)->get(), 'news' => $news->where('id_for', '=', $idfaculty)->get(),
                 'news2' => $news->where('id_for_department', '=', $iddepartment)->get()]);;
             }
@@ -48,13 +48,13 @@ $this->middleware('auth');
              return view('Userlist', ['data' => $user->where('department', '=', Auth::user()->department)
                 ->where('users.id', '<>', Auth()->id())->where('id1', '>', 2)
                 ->orwhere('faculty', '=', Auth::user()->faculty)
-                ->where('DOLZ', '=', 'Декан')->where('id1', '>', 2)->get(), 
+                ->where('role', '=', 'Декан')->where('id1', '>', 2)->get(), 
                 'news' => $news->where('id_for', '=', $idfaculty)->get(),
                 'news2' => $news->where('id_for_department', '=', $iddepartment)->get()]);     
             }
             else {return view('Userlist', ['data' => $user->where('department', '=', Auth::user()->department)
                 ->where('users.id', '<>', Auth()->id())
-                ->where('DOLZ', '<>', 'Декан')->where('id1', '>', 2)->get(), 
+                ->where('role', '<>', 'Декан')->where('id1', '>', 2)->get(), 
                 'news' => $news->where('id_for', '=', $idfaculty)->get(),
                 'news2' => $news->where('id_for_department', '=', $iddepartment)->get()]);;
             }
@@ -62,8 +62,9 @@ $this->middleware('auth');
         else {return view('error');}
     }
     
-    public function ShowOnUser($id, $id_to) {
+    public function ShowOnUser($id, $id_to, request $req) {
         $user = New User;
+
         $messagefrom = New FileManager;
         return view('OneUser', ['name' => $id, 'name2' => $id_to,
         'messagefrom' =>  $messagefrom->where('id_to', '=', auth()->id())
