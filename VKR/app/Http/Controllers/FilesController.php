@@ -16,11 +16,9 @@ class FilesController extends Controller
     $this->middleware('auth');
     }
     // функция для отправки сообщения, которая также проверяет наличие прикрепленного файла
-    public function UpLoad(Request $request) {
-        $user = new User;
+    public function UpLoad(Request $request, $id_to, $quest_id) {
+        $user = new User;  
         $file = $request->file('files');
-        $touser = $request->input('idtouser');
-        $toquest = $request->input('idtoquest');
         $text = $request->input('text');
         if ($file > 0){
             $file->store('files');
@@ -28,8 +26,8 @@ class FilesController extends Controller
             $message = FileManager::create([
             'href' => $path,
             'id_from' => auth()->id(),
-            'id_to' => $touser,
-            'id_1' => $toquest,
+            'id_to' => $id_to,
+            'id_1' => $quest_id,
             'text' => $text
             ]);
          return back();
@@ -39,8 +37,8 @@ class FilesController extends Controller
             $message = FileManager::create([
             'href' => 0,
             'id_from' => auth()->id(),
-            'id_to' => $touser,
-            'id_1' => $toquest,
+            'id_to' => $id_to,
+            'id_1' => $quest_id,
             'text' => $text]);
             return back();
         }

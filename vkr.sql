@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Фев 21 2022 г., 16:18
+-- Время создания: Мар 04 2022 г., 23:03
 -- Версия сервера: 10.3.22-MariaDB
 -- Версия PHP: 7.1.33
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `departments` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name_d` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `id_faculty` int(10) UNSIGNED NOT NULL,
+  `id_faculty` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -95,25 +95,12 @@ CREATE TABLE `file_managers` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `text` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `href` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `id_from` int(20) DEFAULT NULL,
-  `id_to` int(20) DEFAULT NULL,
-  `id_1` int(20) DEFAULT NULL,
+  `id_from` bigint(20) DEFAULT NULL,
+  `id_to` bigint(20) DEFAULT NULL,
+  `id_1` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Дамп данных таблицы `file_managers`
---
-
-INSERT INTO `file_managers` (`id`, `text`, `href`, `id_from`, `id_to`, `id_1`, `created_at`, `updated_at`) VALUES
-(114, 'норм', '0', 26, 17, 67, '2022-02-03 23:12:24', '2022-02-03 23:12:24'),
-(117, 'Проверка', '0', 17, 18, 69, '2022-02-04 07:36:58', '2022-02-04 07:36:58'),
-(118, 'Успешно', '0', 18, 17, 69, '2022-02-04 07:38:32', '2022-02-04 07:38:32'),
-(119, NULL, '0', 17, NULL, NULL, '2022-02-21 10:04:55', '2022-02-21 10:04:55'),
-(120, NULL, '0', 17, NULL, NULL, '2022-02-21 10:04:57', '2022-02-21 10:04:57'),
-(121, 'Точно?', '0', 17, 18, 69, '2022-02-21 10:19:13', '2022-02-21 10:19:13'),
-(122, 'Все работает?', '0', 17, 18, 71, '2022-02-21 12:15:44', '2022-02-21 12:15:44');
 
 -- --------------------------------------------------------
 
@@ -165,21 +152,14 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `news` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `id_owner` int(10) UNSIGNED NOT NULL,
+  `id_owner` bigint(20) UNSIGNED NOT NULL,
   `text` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `id_for` int(10) UNSIGNED DEFAULT NULL,
-  `id_for_department` int(10) UNSIGNED DEFAULT NULL,
+  `id_for` int(10) DEFAULT NULL,
+  `id_for_department` int(10) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `hreffornews` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Дамп данных таблицы `news`
---
-
-INSERT INTO `news` (`id`, `id_owner`, `text`, `id_for`, `id_for_department`, `created_at`, `updated_at`, `hreffornews`) VALUES
-(54, 18, 'Тестовое объявление для факультета', 1, NULL, '2021-12-24 09:05:03', '2021-12-24 09:05:03', '0');
 
 -- --------------------------------------------------------
 
@@ -227,9 +207,9 @@ CREATE TABLE `personal_access_tokens` (
 CREATE TABLE `quests` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `subject` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `id_from` int(20) DEFAULT NULL,
-  `id_to` int(20) DEFAULT NULL,
-  `id_11` int(10) DEFAULT NULL,
+  `id_from` bigint(20) UNSIGNED NOT NULL,
+  `id_to` bigint(20) UNSIGNED NOT NULL,
+  `id_11` int(2) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -239,9 +219,7 @@ CREATE TABLE `quests` (
 --
 
 INSERT INTO `quests` (`id`, `subject`, `id_from`, `id_to`, `id_11`, `created_at`, `updated_at`) VALUES
-(69, 'Тестовое задание', 17, 18, 1, '2022-02-04 07:36:18', '2022-02-04 07:36:18'),
-(70, 'тест', 17, 18, 1, '2022-02-04 07:36:33', '2022-02-04 07:36:33'),
-(71, 'Новое задание', 17, 18, 0, '2022-02-21 12:15:34', '2022-02-21 12:15:34');
+(78, 'новое задание', 17, 18, 0, '2022-03-04 19:47:41', '2022-03-04 19:47:41');
 
 -- --------------------------------------------------------
 
@@ -263,7 +241,10 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('TE6l9m5JlasK2ht4Vt6yLb19SEHEAmuwXuwo5GII', 17, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36 Edg/98.0.1108.56', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiMkVzS3JWSHdSSkRYcUE2dkRXZFZnZ21BUFhXY2kzSDdpR1E0aktXeSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC93b3Jrd2l0aHVzZXIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxNztzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJGVIZlNqYjdORFBVdndWamlhbm9IQmV6OVpNaWdtL05LVVRBazY4anZQWU4zR3paTDI5WHVDIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRlSGZTamI3TkRQVXZ3VmppYW5vSEJlejlaTWlnbS9OS1VUQWs2OGp2UFlOM0d6WkwyOVh1QyI7fQ==', 1645449407);
+('k9fjzx5NHBflWSR4XXiUj92TxsaiqLbBFaqkqR6u', 17, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36 Edg/99.0.1150.30', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiUHJMeXRlb0VBSVVNNHhhMXplMVNpU2IyQVFXeEUxMGZVTmJpcVdlaCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC93b3Jrd2l0aHVzZXIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxNztzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJGVIZlNqYjdORFBVdndWamlhbm9IQmV6OVpNaWdtL05LVVRBazY4anZQWU4zR3paTDI5WHVDIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRlSGZTamI3TkRQVXZ3VmppYW5vSEJlejlaTWlnbS9OS1VUQWs2OGp2UFlOM0d6WkwyOVh1QyI7fQ==', 1646423557),
+('OkPZ0cXa5YJfrtECdZJnXd7g9qHItkzzkbSspmQV', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.174 YaBrowser/22.1.4.837 Yowser/2.5 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiem41YjdyMkdvd1JMQUM5TUo1SEhtWFE4RWZNZHlXQzNoZkIwN25ZZCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC93b3Jrd2l0aHVzZXIiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkaGJhV0oxcnVIQ25IRmF1b0FxaU9yZTJlMm5ZOHFCMVJ6MzBwZC5ZczVNTUJLc2MvT2NVOFciO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJGhiYVdKMXJ1SENuSEZhdW9BcWlPcmUyZTJuWThxQjFSejMwcGQuWXM1TU1CS3NjL09jVThXIjt9', 1646423883),
+('sNBsA3dyKkqdhjdoy8cVKk9PyBvOMZNayiQl2Dtv', 18, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36 Edg/98.0.1108.62', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiVVZ3aHBTU0pXYjNMemFUUHlNWHlNUFY4Um5MTnV2MGVaRjFjU0J3YyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzQ6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC93b3Jrd2l0aHVzZXIiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxODtzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJHRkS3lHWEVnYURqRGlWRmIwNlVBNnU5ZGE5a0RSb0JOSXhKbkRvVVA5VTBCSUxjTy9KRkFDIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCR0ZEt5R1hFZ2FEakRpVkZiMDZVQTZ1OWRhOWtEUm9CTkl4Sm5Eb1VQOVUwQklMY08vSkZBQyI7fQ==', 1646421487),
+('XCfHDsGEUZN8FxyjN5b6jWnndWUtwvQzVXejpZzW', 27, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36 Edg/99.0.1150.30', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiS1Vpblo1bnJveHNtV1BTSU1mbk1vTVV4UlJsR1VScURWRVd2d21xWCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyNztzOjE3OiJwYXNzd29yZF9oYXNoX3dlYiI7czo2MDoiJDJ5JDEwJC82bnNTSExBb2dSVW90cDY1ZE1MUGVYblhFYkc4L0dKWC56VG5jRXRvbmY1UzZKSFp0SGtlIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCQvNm5zU0hMQW9nUlVvdHA2NWRNTFBlWG5YRWJHOC9HSlguelRuY0V0b25mNVM2SkhadEhrZSI7fQ==', 1646423800);
 
 -- --------------------------------------------------------
 
@@ -310,7 +291,8 @@ INSERT INTO `teams` (`id`, `user_id`, `name`, `personal_team`, `created_at`, `up
 (23, 23, '333\'s Team', 1, '2021-12-10 10:52:04', '2021-12-10 10:52:04'),
 (24, 24, '44\'s Team', 1, '2021-12-10 15:35:13', '2021-12-10 15:35:13'),
 (25, 25, '3332\'s Team', 1, '2022-02-03 20:29:08', '2022-02-03 20:29:08'),
-(26, 26, '22222\'s Team', 1, '2022-02-03 20:32:19', '2022-02-03 20:32:19');
+(26, 26, '22222\'s Team', 1, '2022-02-03 20:32:19', '2022-02-03 20:32:19'),
+(27, 27, 'new\'s Team', 1, '2022-03-04 19:56:20', '2022-03-04 19:56:20');
 
 -- --------------------------------------------------------
 
@@ -424,7 +406,8 @@ ALTER TABLE `failed_jobs`
 -- Индексы таблицы `file_managers`
 --
 ALTER TABLE `file_managers`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_1` (`id_1`);
 
 --
 -- Индексы таблицы `migrations`
@@ -457,7 +440,9 @@ ALTER TABLE `personal_access_tokens`
 -- Индексы таблицы `quests`
 --
 ALTER TABLE `quests`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `quests_ibfk_1` (`id_from`),
+  ADD KEY `id_to` (`id_to`);
 
 --
 -- Индексы таблицы `sessions`
@@ -527,7 +512,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT для таблицы `file_managers`
 --
 ALTER TABLE `file_managers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
 -- AUTO_INCREMENT для таблицы `migrations`
@@ -539,7 +524,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT для таблицы `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT для таблицы `personal_access_tokens`
@@ -551,13 +536,13 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT для таблицы `quests`
 --
 ALTER TABLE `quests`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT для таблицы `teams`
 --
 ALTER TABLE `teams`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT для таблицы `team_invitations`
@@ -575,7 +560,7 @@ ALTER TABLE `team_user`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT для таблицы `websockets_statistics_entries`
@@ -586,6 +571,31 @@ ALTER TABLE `websockets_statistics_entries`
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
+
+--
+-- Ограничения внешнего ключа таблицы `departments`
+--
+ALTER TABLE `departments`
+  ADD CONSTRAINT `departments_ibfk_1` FOREIGN KEY (`id_faculty`) REFERENCES `faculties` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `file_managers`
+--
+ALTER TABLE `file_managers`
+  ADD CONSTRAINT `file_managers_ibfk_1` FOREIGN KEY (`id_1`) REFERENCES `quests` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `news`
+--
+ALTER TABLE `news`
+  ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`id_owner`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `quests`
+--
+ALTER TABLE `quests`
+  ADD CONSTRAINT `quests_ibfk_1` FOREIGN KEY (`id_from`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `quests_ibfk_2` FOREIGN KEY (`id_to`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `team_invitations`

@@ -33,7 +33,7 @@ Route::get('/workwithuser/{id}/1', 'App\Http\Controllers\usercontroller@allMessa
 Route::get('/workwithuser/{id}', 'App\Http\Controllers\usercontroller@ShowOnUser')
 ->name('userdata-one');
 
-Route::post('/upload', 'App\Http\Controllers\FilesController@UpLoad')
+Route::post('/upload/{id_to}/{quest_id}', 'App\Http\Controllers\FilesController@UpLoad')
 ->name('UpLoad');
 Route::post('/workwithuser/', 'App\Http\Controllers\FilesController@Download')
 ->name('Download');
@@ -44,9 +44,9 @@ Route::post('selectdepartment', 'App\Http\Controllers\facultyController@selectde
 Route::get('/workwithuser/quest/{id}', 'App\Http\Controllers\questcontroller@ShowQuest')
 ->name('ShowQuest');
 
-Route::get('/workwithuser/quest/{id_to}/{id}', 'App\Http\Controllers\usercontroller@ShowOnUser')
+Route::get('/workwithuser/quest/{id_to}/{id}/{quest_status}', 'App\Http\Controllers\usercontroller@ShowOnUser')
 ->name('MessagesForQuest');
-Route::post('/222', 'App\Http\Controllers\questcontroller@addquest')->name('addquest');
+Route::get('/{id_to}', 'App\Http\Controllers\questcontroller@addquest')->name('addquest');
 
 
 Route::get('/{id}', 'App\Http\Controllers\questcontroller@delquest')->name('delquest');

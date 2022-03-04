@@ -72,14 +72,14 @@
                             <form action="{{route('downloadnews')}}"  method="post">
                                 @csrf
                             <button type="submit" value='{{ $el->hreffornews }}' id="href" 
-                                    name="href" class="btn btn-warning">Скачать</button>
+                                    name="href" class="btn btn-warning mb-1 mr-1">Скачать</button>
                             </form>
 
                             
                             @else
                             @endif                     
                             <a href="{{ route('deletenews', $el->id) }}">  
-                            <button class="btn ml-2 btn-warning">
+                            <button class="btn btn-warning">
                             Удалить 
                             </button>
                             </a>

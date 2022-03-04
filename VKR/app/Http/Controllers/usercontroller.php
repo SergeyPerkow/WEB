@@ -62,11 +62,11 @@ $this->middleware('auth');
         else {return view('error');}
     }
     
-    public function ShowOnUser($id, $id_to, request $req) {
+    public function ShowOnUser($id, $id_to, $quest_status, request $req) {
         $user = New User;
 
         $messagefrom = New FileManager;
-        return view('OneUser', ['name' => $id, 'name2' => $id_to,
+        return view('OneUser', ['id_to' => $id, 'quest_id' => $id_to, 'quest_status' => $quest_status,
         'messagefrom' =>  $messagefrom->where('id_to', '=', auth()->id())
         ->where('id_from', '=', $id)->where('id_1', '=', $id_to)
         ->orderby('created_at', 'asc')

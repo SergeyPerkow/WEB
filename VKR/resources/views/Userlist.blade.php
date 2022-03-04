@@ -26,7 +26,7 @@
             <p>{{ $el->name_d }}</p>
             
             <form action="{{ route('ShowQuest', $el->id) }}" method="get" enctype="multipart/form-data">        
-            <button class="btn btn-warning" style='float: left'>
+            <button class="btn btn-warning mb-1" style='float: left'>
             <input type="int" hidden value='0' class="form-control" id="quest_status" name="quest_status" required="">
             Невыполненные задания
             </button>

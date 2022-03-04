@@ -23,14 +23,14 @@
                             @foreach($from as $el)
                                 <div class='alert alert-secondary'>
                                 <h3>{{ $el->subject }}</h3>
-                                <a href=" {{ route('MessagesForQuest', [$el->id_to, $el->id]) }} "> 
+                                <a href=" {{ route('MessagesForQuest', [$el->id_to, $el->id, $quest_status]) }} "> 
                                 <button class="btn btn-warning">
                                 Сообщения
                                 </button>
                                 </a>
                                     @if ($quest_status == 0)
                                         <a href=" {{ route('delquest', $el->id) }} "> 
-                                        <button class="btn btn-warning">
+                                        <button class="btn btn-warning ">
                                         Отметить как выполненное 
                                         </button>
                                         </a>
@@ -42,19 +42,19 @@
                                 @foreach($from2 as $el)
                                     <div class='alert alert-secondary'>
                                     <h3>{{ $el->subject }}</h3>
-                                    <a href=" {{ route('MessagesForQuest', [$el->id_from, $el->id]) }} "> 
+                                    <a href=" {{ route('MessagesForQuest', [$el->id_from, $el->id, $quest_status]) }} "> 
                                     <button class="btn btn-warning">
                                     Сообщения
                                     </button>
                                     </a>
                                     </div>
                                 @endforeach
+                                
                     @if ($quest_status == 0)
                         <div class="card-header">Ответить</div>
                             <div class="card-body">
-                                <form action="{{ route('addquest')}}" method="post" enctype="multipart/form-data">
-                                    @CSRF   
-                                    <input type="text"  value={{$name}} hidden class="form-control" id="idto" name="idto" required="">
+                                <form action=" {{ route('addquest', $id_to) }} " method="get" enctype="multipart/form-data">
+                                    @CSRF                                       
                                     <div class="custom-file">
                                     <textarea name="subject" id="subject" cols="12" rows="1" placeholder="Введите тему" class="form-control"></textarea>    
                                     </div>

@@ -25,11 +25,11 @@ class questcontroller extends Controller
         $iddepartment = Auth::user()->department;
         $news = New news;
         return view('Quest', 
-        ['name' => $id, 
-        'quest_status' =>$b,
+        ['id_to' => $id, 
+        'quest_status' => $b,
         'from' =>  $Questfrom->where('id_to', '=', $id)
-            ->where('id_11', '=', $b)->
-                where('id_from', '=', auth()->id())->get(),
+            ->where('id_11', '=', $b)
+            ->where('id_from', '=', auth()->id())->get(),
         'from2' =>  $Questfrom->where('id_to', '=', auth()->id())
             ->where('id_11', '=', $b)->where('id_from', '=', $id)->get(),
         'news' => $news->where('id_for', '=', $idfaculty)->get(),
@@ -37,15 +37,15 @@ class questcontroller extends Controller
         
     }
     
-    public function addquest(Request $request) {
+    public function addquest(Request $request, $id_to) {
         
         
-       $touser = $request->input('idto');
+       
        $subject = $request->input('subject');;
         $quest = quest::create([
             'subject' => $subject,
             'id_from' => auth()->id(),
-            'id_to' => $touser,
+            'id_to' => $id_to,
             'id_11' => 0,]);
         return back();
     }

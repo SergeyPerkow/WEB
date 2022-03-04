@@ -27,8 +27,6 @@
                                             @if ($mes->href <> '0')
                                             <button type="submit" value='{{ $mes->href }}' id="href" 
                                             name="href" class="btn btn-primary">Скачать</button>
-                                            @else 
-                                            
                                             @endif
                                         </div>
                                         </div>
@@ -40,7 +38,6 @@
                                             @if ($mes->href <> '0')
                                             <button type="submit" value='{{ $mes->href }}' id="href" 
                                             name="href" class="btn btn-primary">Скачать</button>
-                                            @else 
                                             
                                             @endif
                                         </div>
@@ -49,13 +46,11 @@
                                 </form>
                             @endforeach
                         </div>
-
+                    @if ($quest_status == 0)
                         <div class="card-header">Ответить</div>
                             <div class="card-body">
-                                <form action="{{ route('UpLoad', auth()->id()) }}" method="post" enctype="multipart/form-data">
-                                 @CSRF       
-                                    <input type="text" hidden value='{{ $name }}' class="form-control" id="idtouser" name="idtouser" required="">
-                                    <input type="text" hidden value='{{ $name2 }}' class="form-control" id="idtoquest" name="idtoquest" required="">
+                                <form action="{{ route('UpLoad', [$id_to, $quest_id]) }}" method="post" enctype="multipart/form-data">
+                                 @CSRF                                           
                                     <div class="custom-file">
                                         <textarea name="text" id="text" cols="30" rows="5" placeholder="Введите текст сообщения" required="" class="form-control"></textarea>   
                                     </div>
@@ -73,6 +68,7 @@
        
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
